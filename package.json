@@ -1,0 +1,20 @@
+{
+  "author": {
+    "name": "Dmitriy1921"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "printer": "^0.2.2",
+    "uuid-compression": "^1.0.0"
+  },
+  "deprecated": false,
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "zpl-uuid",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "version": "1.0.0"
+}
