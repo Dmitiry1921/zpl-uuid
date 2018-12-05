@@ -3,6 +3,19 @@ const uuidCompression = require('uuid-compression')
 
 class zplUUID{
     /**
+     * Получить список принтеров
+     * @return Promise <Array> - Printer array
+     */
+    static getPrinters(){
+        return new Promise((resolve, reject) => {
+           try {
+               resolve(printer.getPrinters());
+           }catch (err) {
+               reject(err);
+           }
+        });
+    }
+    /**
      * Печатает QR code и текст
      * @param data {String} - UUID
      * @param text {String} - Text
@@ -41,7 +54,6 @@ class zplUUID{
         })
 
     }
-
     /**
      * Печатает Сжатый UUID и текст
      * @param data {String} - UUID
@@ -65,7 +77,6 @@ class zplUUID{
                 ^FO0,270^FD${text}^FSR
                 ^XZ
                 `
-
 
                 printer.printDirect({
                     data: template,
@@ -92,6 +103,34 @@ class zplUUID{
         return new Promise((resolve, reject) => {
             try {
                 resolve(uuidCompression.decompress(data));
+            }catch (err) {
+                reject(err)
+            }
+        });
+    }
+    /**
+     *  Печатаем ZPL
+     *  @param zpl {String} - ZPL String
+     *  @param printerName {String} - printer name
+     *  @return Promise <>
+     */
+    static zplPrint(zpl, printerName = 'ZDesigner GC420t'){
+        return new Promise((resolve, reject) => {
+            try {
+                if(!zpl){
+                    reject({err: 'zpt is not define'});
+                }
+                printer.printDirect({
+                    data: zpl,
+                    printer: printerName,
+                    type: "RAW",
+                    success() {
+                        resolve()
+                    },
+                    error(err) {
+                        reject(err)
+                    }
+                })
             }catch (err) {
                 reject(err)
             }
