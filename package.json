@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "node index.js"
   },
-  "version": "1.0.0",
+  "version": "1.0.2",
   "repository": {
     "type" : "git",
     "url" : "https://github.com/Dmitiry1921/zpl-uuid.git"
